@@ -56,9 +56,9 @@ Graficul de Bare: Oferă o imagine comparativă rapidă, evidențiind dacă mode
 Modul Interactiv
 După antrenare, utilizatorul poate introduce text direct în consolă pentru a primi un verdict instant din partea modelului LSTM:
 
-Intrare: "Ești un prost" -> Ieșire: RESPINS
+Intrare: "Cartea asta este un dezastru!" -> Ieșire: RESPINS
 
-Intrare: "Bună ziua, mulțumesc pentru ajutor" -> Ieșire: ACCEPTAT
+Intrare: "Mi-a placut foarte mult aceasta lectura." -> Ieșire: ACCEPTAT
 
  5. Referințe Utilizate
 Scikit-Learn Documentation: Pentru implementarea Logistic Regression și Decision Tree.
@@ -68,3 +68,5 @@ TensorFlow/Keras: Pentru arhitecturile de rețele neuronale și procesarea secve
 Pandas & NumPy: Pentru manipularea structurilor de date.
 
 Matplotlib & Seaborn: Pentru vizualizarea grafică a performanței.
+
+![image alt](https://github.com/denisaserban0208/ProjectIA/blob/ca6c8284924e4334493286f434fbbbc04e95e04e/Screenshot%202026-03-31%20123346.png)
