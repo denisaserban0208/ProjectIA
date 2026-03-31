@@ -1,73 +1,197 @@
-Proiect AI: Sistem de Filtrare Automată a Comentariilor
- 
- Descriere Generală
-Acest proiect are ca scop clasificarea automată a comentariilor în două categorii: Acceptat (0) și Respins (1). Aplicația utilizează atât algoritmi de Machine Learning clasici, cât și arhitecturi de Deep Learning pentru a compara eficiența acestora în procesarea limbajului natural (NLP).
+#  Filtrarea comentariilor intr-o aplicatie de tip booksharing
 
- 1. Fundamente Teoretice
-Procesarea Limbajului Natural (NLP)
-Pentru ca un computer să înțeleagă textul, acesta trebuie convertit în numere. Proiectul utilizează două abordări:
+##  1. Introducere
 
-TF-IDF (Term Frequency-Inverse Document Frequency): O metodă statistică ce măsoară importanța unui cuvânt în raport cu un document și cu întregul set de date.
+In cadrul aplicatiilor moderne de tip booksharing, utilizatorii pot publica recenzii si comentarii despre carti. Aceste platforme trebuie sa gestioneze continutul generat de utilizatori, prevenind aparitia limbajului ofensator sau toxic.
 
-Word Embeddings: O tehnică modernă unde cuvintele sunt reprezentate ca vectori densi într-un spațiu multidimensional, păstrând relațiile semantice între ele.
+Scopul acestui proiect este dezvoltarea unui sistem inteligent capabil sa clasifice automat comentariile in doua categorii:
 
-Algoritmi Utilizați
-Logistic Regression: Un model liniar robust pentru clasificare binară.
+* **acceptat** (continut adecvat)
+* **respins** (continut toxic sau ofensator)
 
-Decision Tree: Un model bazat pe structuri arborescente care împarte datele în funcție de caracteristicile cele mai relevante.
+Pentru aceasta problema, au fost utilizate tehnici din domeniul Inteligentei Artificiale, in special procesarea limbajului natural (NLP) si invatarea automata.
 
-ANN (Artificial Neural Network): O rețea neuronală densă care învață tipare complexe prin straturi de neuroni (Dense Layers).
+---
 
-LSTM (Long Short-Term Memory): Un tip special de rețea neuronală recurentă (RNN) capabilă să rețină contextul și ordinea cuvintelor dintr-o propoziție.
+##  2. Fundamente teoretice
 
- 2. Organizarea Arhitecturală a Aplicației
-Aplicația este dezvoltată în Python și urmează următorii pași logici:
+### 🔹 Procesarea limbajului natural (NLP)
 
-Preprocesare (Curățare): Textul este transformat în litere mici și semnele de punctuație sunt eliminate folosind expresii regulate (re).
+NLP (Natural Language Processing) este un subdomeniu al Inteligentei Artificiale care se ocupa cu analiza si intelegerea textului uman. In acest proiect, NLP este folosit pentru:
 
-Vectorizare/Tokenizare:
+* curatarea textului
+* transformarea cuvintelor in reprezentari numerice
+* clasificarea automata a comentariilor
 
-Pentru modelele clasice: Se folosește TfidfVectorizer.
+---
 
-Pentru modelele Deep Learning: Se folosește Tokenizer cu o limită de 5000 de cuvinte și pad_sequences pentru a aduce toate comentariile la o lungime fixă de 20 de cuvinte.
+### 🔹 Reprezentarea textului
 
-Antrenare: Datele sunt împărțite în set de antrenare (80%) și set de test (20%). Modelele sunt antrenate pentru a minimiza eroarea de clasificare.
+Pentru a putea utiliza algoritmi de invatare automata, textul trebuie transformat in vectori numerici:
 
-Evaluare: Se calculează acuratețea și se generează o matrice de confuzie pentru a vedea erorile de tip "False Positive" sau "False Negative".
+* **TF-IDF (Term Frequency - Inverse Document Frequency)**
+  Metoda statistica care evalueaza importanta unui cuvant intr-un document.
 
- 3. Date de Test și Interpretarea Rezultatelor
-Datele utilizate
-Proiectul folosește un set de date de tip CSV (comments.csv) care conține:
+* **Tokenizare + Padding**
+  Transformarea textului in secvente de numere si aducerea lor la aceeasi lungime pentru retele neuronale.
 
-Coloana text: Mesajele scrise de utilizatori.
+---
 
-Coloana label: Eticheta manuală (Acceptat/Respins).
+### 🔹 Modele utilizate
 
-Rezultate (Exemplu de interpretare)
-În urma rulării, aplicația compară performanța modelelor:
+#### 1. Logistic Regression
 
-Acuratețea: Reprezintă procentul de comentarii clasificate corect din totalul testelor.
+* model clasic de clasificare liniara
+* eficient pentru probleme simple de text
 
-Matricea de Confuzie (LSTM): Arată exact câte comentarii "Acceptate" au fost greșit catalogate ca "Respinse" și invers.
+#### 2. Decision Tree
 
-Graficul de Bare: Oferă o imagine comparativă rapidă, evidențiind dacă modelele complexe (LSTM) depășesc modelele simple (Logistic Regression).
+* model bazat pe reguli
+* interpretabile dar pot supra-invata datele
 
- 4. Mod de Utilizare
-Modul Interactiv
-După antrenare, utilizatorul poate introduce text direct în consolă pentru a primi un verdict instant din partea modelului LSTM:
+#### 3. ANN (Artificial Neural Network)
 
-Intrare: "Cartea asta este un dezastru!" -> Ieșire: RESPINS
+* retea neuronala simpla (feedforward)
+* invata relatii non-lineare
 
-Intrare: "Mi-a placut foarte mult aceasta lectura." -> Ieșire: ACCEPTAT
+#### 4. LSTM (Long Short-Term Memory)
 
- 5. Referințe Utilizate
-Scikit-Learn Documentation: Pentru implementarea Logistic Regression și Decision Tree.
+* tip de retea neuronala recurenta
+* capabila sa inteleaga dependentele dintre cuvinte
+* potrivita pentru procesarea textului
 
-TensorFlow/Keras: Pentru arhitecturile de rețele neuronale și procesarea secvențelor.
+---
 
-Pandas & NumPy: Pentru manipularea structurilor de date.
+##  3. Arhitectura aplicatiei
 
-Matplotlib & Seaborn: Pentru vizualizarea grafică a performanței.
+Aplicatia este structurata in mai multe etape:
+
+1. **Incarcarea datelor**
+
+   * citirea datasetului CSV
+
+2. **Preprocesare**
+
+   * transformare in lowercase
+   * eliminare punctuatie
+
+3. **Vectorizare**
+
+   * TF-IDF pentru modelele clasice
+   * Tokenizare pentru LSTM si ANN
+
+4. **Antrenare modele**
+
+   * Logistic Regression
+   * Decision Tree
+   * ANN
+   * LSTM
+
+5. **Evaluare**
+
+   * accuracy
+   * classification report
+   * matrice de confuzie
+
+6. **Testare interactiva**
+
+   * utilizatorul introduce comentarii
+   * sistemul returneaza clasificarea
+
+---
+
+##  4. Dataset
+
+Datasetul utilizat a fost creat manual si contine comentarii despre carti, etichetate in doua categorii:
+
+* acceptat
+* respins
+
+Caracteristici:
+
+* ~200-300 exemple
+* echilibrat intre clase
+* include variatii de limbaj (pozitiv, negativ, toxic)
+
+Motivatie:
+Dataseturile existente nu reflecta exact contextul aplicatiilor de tip booksharing, motiv pentru care a fost construit un dataset personalizat.
+
+---
+
+##  5. Implementare
+
+Proiectul a fost implementat in Python folosind urmatoarele biblioteci:
+
+* pandas (manipulare date)
+* scikit-learn (modele clasice)
+* tensorflow / keras (retele neuronale)
+* matplotlib & seaborn (vizualizare)
+
+Etapele principale:
+
+* curatarea textului
+* transformarea in vectori
+* antrenarea modelelor
+* compararea performantelor
+
+---
+
+##  6. Rezultate si interpretare
+
+Performanta modelelor a fost evaluata folosind accuracy si matricea de confuzie.
+
+Observatii:
+
+* modelele clasice sunt rapide si eficiente pentru date mici
+* LSTM ofera rezultate mai bune pentru intelegerea contextului
+* ANN ofera performanta intermediara
+
+Matricea de confuzie arata:
+
+* cate comentarii sunt clasificate corect
+* unde apar erori (ex: comentarii toxice acceptate)
+
+Cea mai importanta eroare este clasificarea comentariilor toxice ca fiind acceptate.
+
+---
+
+##  7. Concluzii
+
+Acest proiect demonstreaza utilizarea tehnicilor de Inteligenta Artificiala pentru filtrarea automata a comentariilor.
+
+Avantaje:
+
+* automatizarea moderarii continutului
+* reducerea interventiei umane
+* aplicabilitate reala in platforme online
+
+Limitari:
+
+* dataset relativ mic
+* dificultate in detectarea nuantelor limbajului
+
+---
+
+##  8. Posibile imbunatatiri
+
+* utilizarea unui dataset mai mare
+* folosirea modelelor moderne (BERT, transformers)
+* detectarea sarcasmului
+* integrarea intr-o aplicatie web
+
+---
+
+##  9. Bibliografie
+
+1. Jurafsky, D., & Martin, J. H. – *Speech and Language Processing*
+2. Goodfellow, I., Bengio, Y., Courville, A. – *Deep Learning*
+3. Documentatia oficiala Scikit-learn – https://scikit-learn.org
+4. Documentatia TensorFlow – https://www.tensorflow.org
+5. Kaggle – https://www.kaggle.com
+6. Manning, C. D. – *Foundations of Statistical Natural Language Processing*
+
+---
+
 
 ![image alt](https://github.com/denisaserban0208/ProjectIA/blob/ca6c8284924e4334493286f434fbbbc04e95e04e/Screenshot%202026-03-31%20123346.png)
 
