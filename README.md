@@ -70,3 +70,5 @@ Pandas & NumPy: Pentru manipularea structurilor de date.
 Matplotlib & Seaborn: Pentru vizualizarea grafică a performanței.
 
 ![image alt](https://github.com/denisaserban0208/ProjectIA/blob/ca6c8284924e4334493286f434fbbbc04e95e04e/Screenshot%202026-03-31%20123346.png)
+
+![image alt](https://github.com/denisaserban0208/ProjectIA/blob/0c163a9b142eb0a35cdcae27c3492070d1d0b0b2/Screenshot%202026-03-31%20123401.png)
