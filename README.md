@@ -1,4 +1,5 @@
 Proiect AI: Sistem de Filtrare Automată a Comentariilor
+ 
  Descriere Generală
 Acest proiect are ca scop clasificarea automată a comentariilor în două categorii: Acceptat (0) și Respins (1). Aplicația utilizează atât algoritmi de Machine Learning clasici, cât și arhitecturi de Deep Learning pentru a compara eficiența acestora în procesarea limbajului natural (NLP).
 
